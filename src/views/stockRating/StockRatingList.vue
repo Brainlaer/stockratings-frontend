@@ -5,8 +5,12 @@
 
         <template #content>
 
-            <DataTable :value="products" scrollable >
+            <DataTable :value="products" scrollable>
                 <template #header>
+                    <div class="flex justify-end">
+                        <Button label="New Stock" icon="pi pi-plus" @click="goTo('stockRatingCreate')" />
+
+                    </div>
                     <div class="flex justify-between flex-wrap pb-10">
                         <div class="flex flex-col gap-3">
                             <span>Order By:</span>
@@ -43,6 +47,10 @@
                             </div>
                         </div>
                     </div>
+                    <p class="mb-5 flex gap-1">Showing {{ offset }} to 
+                            <p v-if="totalRecords>limit"> {{ limit+offset }} stocks</p> 
+                            <p v-if="totalRecords<limit"> {{ totalRecords+offset }} stocks</p> 
+                            from {{ totalRecords }}</p>
                 </template>
                 <Column header="#">
                     <template #body="slotProps" class="font-bold">
@@ -50,8 +58,16 @@
                     </template>
                 </Column>
                 <Column field="ticker" frozen header="Ticker"></Column>
-                <Column field="target_from" header="Target From"></Column>
-                <Column field="target_to" header="Target To"></Column>
+                <Column header="Target From">
+                    <template #body="slotProps">
+                        {{ Number(slotProps.data.target_from).toFixed(2) }}
+                    </template>
+                </Column>
+                <Column header="Target To">
+                    <template #body="slotProps">
+                        {{ Number(slotProps.data.target_to).toFixed(2) }}
+                    </template>
+                </Column>
                 <Column field="company" header="Company"></Column>
                 <Column header="Action">
                     <template #body="slotProps">
@@ -63,8 +79,9 @@
                 <Column field="rating_to" header="Rating To"></Column>
                 <Column class="w-24 !text-end">
                     <template #body="slotProps">
-            <Button icon="pi pi-eye" @click="goTo('stockRatingDetail', slotProps.data.id)" severity="secondary" rounded></Button>
-        </template>
+                        <Button icon="pi pi-eye" @click="goTo('stockRatingDetail', slotProps.data.id)"
+                            severity="secondary" rounded></Button>
+                    </template>
                 </Column>
 
             </DataTable>
@@ -89,8 +106,8 @@ import router from '@/router';
 import { useRoute } from 'vue-router';
 import { InputText, IconField, InputIcon, Select, Paginator } from 'primevue';
 
-const goTo=(viewName:string, id?:string)=>{
-    router.push({name:viewName, params: { id: id } })
+const goTo = (viewName: string, id?: string) => {
+    router.push({ name: viewName, params: { id: id } })
 }
 onMounted(() => {
     getAll();
@@ -140,7 +157,6 @@ const filter = ref('')
 
 const getAll = async () => {
     await nextTick(); // Espera a que Vue actualice los valores
-    console.log(selectedFilter.value, selectedSortable.value, 'params')
 
     let params = new URLSearchParams();
     if (selectedFilter.value && (filter.value)) {
@@ -153,7 +169,6 @@ const getAll = async () => {
     } if (offset.value) {
         params.append('offset', String(offset.value))
     }
-    console.log(selectedFilter.value, selectedSortable.value, params.toString())
 
     stockRatingService.getAll(params).then((response) => {
         products.value = response.data.data;
@@ -195,7 +210,6 @@ watch([limit, currentPage], () => {
     if (limit.value || currentPage.value) {
         offset.value = currentPage.value;
         getAll()
-        console.log(limit.value, 'limit', offset.value, 'offset', currentPage.value, 'page')
     }
 })
 
