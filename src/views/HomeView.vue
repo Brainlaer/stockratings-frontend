@@ -41,8 +41,8 @@
                     </TabPanel>
                     <TabPanel value="4">
                         <p class="mb-5 flex gap-1">Showing {{ offset }} to
-                        <p v-if="totalRecords > limit"> {{ limit + offset }} stocks</p>
-                        <p v-if="totalRecords < limit"> {{ totalRecords + offset }} stocks</p>
+                        <p v-if="totalRecords > (limit+offset)"> {{ limit + offset }} stocks</p>
+                        <p v-if="totalRecords < (limit+offset)"> {{ totalRecords }} stocks</p>
                         from {{ totalRecords }}</p>
                         <TableSuggest :products="stocksSearch" :offset="offset"></TableSuggest>
                         <Paginator v-model:rows="limit" v-model:first="currentPage" :totalRecords="totalRecords">
@@ -135,7 +135,7 @@ const getAll = async (params: URLSearchParams): Promise<any> => {
     try {
         const response = await stockRatingService.getAll(params);
         if (response.data.status === '200') {
-            return response.data;
+            return response.data.success;
         }
     } catch (error) {
         return [];

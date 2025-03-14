@@ -80,7 +80,7 @@ onMounted(() => {
 
 const getStock = () => {
     stockRatingService.getOne(id.value).then((response) => {
-        stock.value = response.data.data
+        stock.value = response.data.success.data
         stock.value.target_to = Number(stock.value.target_to).toFixed(2)
         stock.value.target_from = Number(stock.value.target_from).toFixed(2)
     })

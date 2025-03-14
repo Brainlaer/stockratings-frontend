@@ -47,10 +47,10 @@
                             </div>
                         </div>
                     </div>
-                    <p class="mb-5 flex gap-1">Showing {{ offset }} to 
-                            <p v-if="totalRecords>limit"> {{ limit+offset }} stocks</p> 
-                            <p v-if="totalRecords<limit"> {{ totalRecords+offset }} stocks</p> 
-                            from {{ totalRecords }}</p>
+                    <p class="mb-5 flex gap-1">Showing {{ offset }} to
+                        <p v-if="totalRecords > (limit+offset)"> {{ limit + offset }} stocks</p>
+                        <p v-if="totalRecords < (limit+offset)"> {{ totalRecords }} stocks</p>
+                        from {{ totalRecords }}</p>
                 </template>
                 <Column header="#">
                     <template #body="slotProps" class="font-bold">
@@ -60,12 +60,12 @@
                 <Column field="ticker" frozen header="Ticker"></Column>
                 <Column header="Target From">
                     <template #body="slotProps">
-                        {{ Number(slotProps.data.target_from).toFixed(2) }}
+                        ${{ Number(slotProps.data.target_from).toFixed(2) }}
                     </template>
                 </Column>
                 <Column header="Target To">
                     <template #body="slotProps">
-                        {{ Number(slotProps.data.target_to).toFixed(2) }}
+                        ${{ Number(slotProps.data.target_to).toFixed(2) }}
                     </template>
                 </Column>
                 <Column field="company" header="Company"></Column>
@@ -171,10 +171,10 @@ const getAll = async () => {
     }
 
     stockRatingService.getAll(params).then((response) => {
-        products.value = response.data.data;
-        offset.value = response.data.meta.offset;
-        limit.value = response.data.meta.limit;
-        totalRecords.value = response.data.meta.totalRecords;
+        products.value = response.data.success.data;
+        offset.value = response.data.success.meta.offset;
+        limit.value = response.data.success.meta.limit;
+        totalRecords.value = response.data.success.meta.totalRecords;
 
 
 

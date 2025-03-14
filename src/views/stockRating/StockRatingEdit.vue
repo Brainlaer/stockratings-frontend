@@ -142,7 +142,7 @@ onMounted(() => {
 
 const getStock = () => {
     stockRatingService.getOne(id.value).then((response: any) => {
-        stock.value = response.data.data;
+        stock.value = response.data.success.data;
         if (stock.value) {
             setFormValue(stock.value)
         }

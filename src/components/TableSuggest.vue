@@ -2,7 +2,7 @@
     <DataTable :value="products" tableStyle="min-width: 50rem" scrollable>
         <Column header="#">
             <template #body="slotProps" class="font-bold">
-                {{ offset ?? 0 + slotProps.index + 1 }}
+                {{ (offset ?? 0) + slotProps.index + 1 }}
             </template>
         </Column>
         <Column frozen header="Ticker">
@@ -15,12 +15,12 @@
         </Column>
         <Column header="Target From">
             <template #body="slotProps">
-                $ {{ Number(slotProps.data.target_from).toFixed(2) }}
+                ${{ Number(slotProps.data.target_from).toFixed(2) }}
             </template>
         </Column>
         <Column header="Target To">
             <template #body="slotProps">
-                $ {{ Number(slotProps.data.target_to).toFixed(2) }}
+                ${{ Number(slotProps.data.target_to).toFixed(2) }}
             </template>
         </Column>
         <Column header="Potencial Growth">
