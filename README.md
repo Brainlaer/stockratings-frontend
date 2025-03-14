@@ -1,6 +1,10 @@
 # stockrating
+Software de analísis de bolsasa de mercados internacionales
 
-This template should help get you started developing with Vue 3 in Vite.
+
+https://github.com/user-attachments/assets/4dc5c6a5-021b-4b17-a4fd-c1a9285b730b
+
+
 
 ## Recommended IDE Setup
 
