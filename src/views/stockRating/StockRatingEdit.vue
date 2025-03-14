@@ -5,97 +5,96 @@
             <p v-else>Create stock</p>
         </template>
         <template #content>
-            <p v-if="id.length > 0" class="pt-10 pb-6">Last update: {{ new Date(stock?.time).toLocaleDateString('Es-es',opcionesDate) }}</p>
+            <p v-if="id.length > 0" class="pt-10 pb-6">Last update: {{ new
+                Date(stock?.time).toLocaleDateString('Es-es', opcionesDate) }}</p>
 
             <div class="flex justify-center">
-                <div class="flex flex-col gap-4 w-full sm:w-300">
-                    <div class="flex justify-between gap-40">
-                        <div class="flex flex-col w-full gap-4">
-                            <div class="flex flex-col gap-1">
-                                <FloatLabel variant="in">
-                                    <InputText id="ticker" v-model="stockForm.ticker" type="text" fluid />
-                                    <label for="ticker">Ticker</label>
-                                </FloatLabel>
-                                <Message v-if="errors.ticker" severity="error" size="small" variant="simple">{{
-                                    errors.ticker }}
-                                </Message>
-                            </div>
-
-                            <div class="flex flex-col gap-1">
-                                <FloatLabel variant="in">
-                                    <InputNumber id="target_from" v-model="stockForm.target_from" :min="0"
-                                        :minFractionDigits="2" :maxFractionDigits="5" fluid />
-                                    <label for="target_from">Target From</label>
-                                </FloatLabel>
-                                <Message v-if="errors.target_from" severity="error" size="small" variant="simple">{{
-                                    errors.target_from }}</Message>
-                            </div>
-
-                            <div class="flex flex-col gap-1">
-                                <FloatLabel variant="in">
-                                    <InputNumber id="target_to" v-model="stockForm.target_to" :min="0"
-                                        :minFractionDigits="2" :maxFractionDigits="5" fluid />
-                                    <label for="target_to">Target To</label>
-                                </FloatLabel>
-                                <Message v-if="errors.target_to" severity="error" size="small" variant="simple">{{
-                                    errors.target_to
-                                    }}</Message>
-                            </div>
-
-                            <div class="flex flex-col gap-1">
-                                <FloatLabel variant="in">
-                                    <InputText id="company" v-model="stockForm.company" type="text" fluid />
-                                    <label for="company">Company</label>
-                                </FloatLabel>
-                                <Message v-if="errors.company" severity="error" size="small" variant="simple">{{
-                                    errors.company }}
-                                </Message>
-                            </div>
+                <div class="flex flex-col gap-4 w-full sm:w-250">
+                    <div class="flex gap-4 w-full flex-wrap">
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <FloatLabel variant="in">
+                                <InputText id="ticker" v-model="stockForm.ticker" type="text" fluid />
+                                <label for="ticker">Ticker</label>
+                            </FloatLabel>
+                            <Message v-if="errors.ticker" severity="error" size="small" variant="simple">{{
+                                errors.ticker }}
+                            </Message>
                         </div>
-                        <div class="flex flex-col w-full gap-4">
-                            <div class="flex flex-col gap-1">
-                                <FloatLabel variant="in">
-                                    <InputText id="action" v-model="stockForm.action" type="text" fluid />
-                                    <label for="action">Action</label>
-                                </FloatLabel>
-                                <Message v-if="errors.action" severity="error" size="small" variant="simple">{{
-                                    errors.action }}
-                                </Message>
-                            </div>
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <FloatLabel variant="in">
+                                <InputText id="company" v-model="stockForm.company" type="text" fluid />
+                                <label for="company">Company</label>
+                            </FloatLabel>
+                            <Message v-if="errors.company" severity="error" size="small" variant="simple">{{
+                                errors.company }}
+                            </Message>
+                        </div>
 
-                            <div class="flex flex-col gap-1">
-                                <FloatLabel variant="in">
-                                    <InputText id="brokerage" v-model="stockForm.brokerage" type="text" fluid />
-                                    <label for="brokerage">Brokerage</label>
-                                </FloatLabel>
-                                <Message v-if="errors.brokerage" severity="error" size="small" variant="simple">{{
-                                    errors.brokerage
-                                    }}</Message>
-                            </div>
+                    </div>
+                    <div class="flex gap-4 w-full flex-wrap">
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <FloatLabel variant="in">
+                                <InputText id="action" v-model="stockForm.action" type="text" fluid />
+                                <label for="action">Action</label>
+                            </FloatLabel>
+                            <Message v-if="errors.action" severity="error" size="small" variant="simple">{{
+                                errors.action }}
+                            </Message>
+                        </div>
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <FloatLabel variant="in">
+                                <InputText id="brokerage" v-model="stockForm.brokerage" type="text" fluid />
+                                <label for="brokerage">Brokerage</label>
+                            </FloatLabel>
+                            <Message v-if="errors.brokerage" severity="error" size="small" variant="simple">{{
+                                errors.brokerage
+                            }}</Message>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 w-full flex-wrap">
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <FloatLabel variant="in">
+                                <InputNumber id="target_from" v-model="stockForm.target_from" :min="0"
+                                    :minFractionDigits="2" :maxFractionDigits="5" fluid />
+                                <label for="target_from">Target From</label>
+                            </FloatLabel>
+                            <Message v-if="errors.target_from" severity="error" size="small" variant="simple">{{
+                                errors.target_from }}</Message>
+                        </div>
 
-                            <div class="flex flex-col gap-1">
-                                <FloatLabel variant="in">
-                                    <InputText id="rating_from" v-model="stockForm.rating_from" type="text" fluid />
-                                    <label for="rating_from">Rating From</label>
-                                </FloatLabel>
-                                <Message v-if="errors.rating_from" severity="error" size="small" variant="simple">{{
-                                    errors.rating_from }}</Message>
-                            </div>
-                            <div class="flex flex-col gap-1">
-                                <FloatLabel variant="in">
-                                    <InputText id="rating_to" v-model="stockForm.rating_to" type="text" fluid />
-                                    <label for="rating_to">Rating To</label>
-                                </FloatLabel>
-                                <Message v-if="errors.rating_to" severity="error" size="small" variant="simple">{{
-                                    errors.rating_to
-                                    }}</Message>
-                            </div>
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <FloatLabel variant="in">
+                                <InputNumber id="target_to" v-model="stockForm.target_to" :min="0"
+                                    :minFractionDigits="2" :maxFractionDigits="5" fluid />
+                                <label for="target_to">Target To</label>
+                            </FloatLabel>
+                            <Message v-if="errors.target_to" severity="error" size="small" variant="simple">{{
+                                errors.target_to
+                                }}</Message>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 w-full flex-wrap">
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <FloatLabel variant="in">
+                                <InputText id="rating_from" v-model="stockForm.rating_from" type="text" fluid />
+                                <label for="rating_from">Rating From</label>
+                            </FloatLabel>
+                            <Message v-if="errors.rating_from" severity="error" size="small" variant="simple">{{
+                                errors.rating_from }}</Message>
+                        </div>
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <FloatLabel variant="in">
+                                <InputText id="rating_to" v-model="stockForm.rating_to" type="text" fluid />
+                                <label for="rating_to">Rating To</label>
+                            </FloatLabel>
+                            <Message v-if="errors.rating_to" severity="error" size="small" variant="simple">{{
+                                errors.rating_to
+                            }}</Message>
                         </div>
                     </div>
 
 
-
-                    <div class="flex gap-3 items-center">
+                    <div class="flex pt-10 gap-3 items-center">
                         <Button icon="pi pi-arrow-left" severity="secondary" @click="goBack()" size="large" />
                         <Button v-if="id.length > 0" label="reset" severity="secondary" icon="pi pi-refresh"
                             @click="resetForm()" />
@@ -288,9 +287,9 @@ const create = () => {
 const goTo = (viewName: string, id?: string) => {
     router.push({ name: viewName, params: { id: id } });
 };
-const opcionesDate: Intl.DateTimeFormatOptions = { 
-    day: "numeric", 
-    month: "long", 
-    year: "numeric" 
+const opcionesDate: Intl.DateTimeFormatOptions = {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
 };
 </script>

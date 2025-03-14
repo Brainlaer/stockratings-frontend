@@ -16,10 +16,10 @@
                             <span>Order By:</span>
                             <div class="flex gap-3">
                                 <Select v-model="selectedOrder" :options="availableOrder" optionLabel="label"
-                                    optionValue="value" placeholder="Order" defaultValue="asc" class="w-full md:w-37" />
+                                    optionValue="value" placeholder="Order" defaultValue="asc" class="w-full md:w-20" />
                                 <Select v-model="selectedSortable" :options="availableSortable" optionLabel="label"
                                     optionValue="value" placeholder="Sortable" defaultValue="ticker"
-                                    class="w-full md:w-37" />
+                                    class="w-full md:w-40" />
 
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                                             <i class="pi pi-search" />
                                         </InputIcon>
                                         <InputText v-model="filter" placeholder="Keyword Search"
-                                            @keydown.enter="getAll()" />
+                                            @keydown.enter="getAll()" class="w-full"/>
                                     </IconField>
                                 </div>
                                 <div v-if="selectedFilter == 'rating_from' || selectedFilter == 'rating_to'">
@@ -42,15 +42,15 @@
                                 </div>
                                 <Select v-model="selectedFilter" :options="availableFilters" optionLabel="label"
                                     optionValue="value" placeholder="Filters" defaultValue="ticker"
-                                    class="w-full md:w-37" />
+                                    class=" md:w-40" />
 
                             </div>
                         </div>
                     </div>
-                    <p class="mb-5 flex gap-1">Showing {{ offset }} to
-                        <p v-if="totalRecords > (limit+offset)"> {{ limit + offset }} stocks</p>
-                        <p v-if="totalRecords < (limit+offset)"> {{ totalRecords }} stocks</p>
-                        from {{ totalRecords }}</p>
+                    <p class="mb-5 flex gap-1">Showing {{ offset+1 }} to
+                        <p v-if="totalRecords > (limit+offset)"> {{ limit + offset }} of</p>
+                        <p v-if="totalRecords < (limit+offset)"> {{ totalRecords }} of</p>
+                        Stocks {{ totalRecords }}</p>
                 </template>
                 <Column header="#">
                     <template #body="slotProps" class="font-bold">
@@ -130,6 +130,8 @@ const availableFilters = ref([
 ])
 const availableSortable = ref([
     { label: 'Ticker', value: 'ticker' },
+    { label: 'Target From', value: 'target_from' },
+    { label: 'Target To', value: 'target_to' },
     { label: 'Company', value: 'company' },
     { label: 'Action', value: 'action' },
     { label: 'Brokerage', value: 'brokerage' },

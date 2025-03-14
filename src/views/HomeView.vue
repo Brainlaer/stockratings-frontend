@@ -40,10 +40,10 @@
                         <TableSuggest :products="stocksDecreasing"></TableSuggest>
                     </TabPanel>
                     <TabPanel value="4">
-                        <p class="mb-5 flex gap-1">Showing {{ offset }} to
-                        <p v-if="totalRecords > (limit+offset)"> {{ limit + offset }} stocks</p>
-                        <p v-if="totalRecords < (limit+offset)"> {{ totalRecords }} stocks</p>
-                        from {{ totalRecords }}</p>
+                        <p class="mb-5 flex gap-1">Showing {{ offset+1 }} to
+                        <p v-if="totalRecords > (limit+offset)"> {{ limit + offset }} of</p>
+                        <p v-if="totalRecords < (limit+offset)"> {{ totalRecords }} of</p>
+                        Stocks {{ totalRecords }}</p>
                         <TableSuggest :products="stocksSearch" :offset="offset"></TableSuggest>
                         <Paginator v-model:rows="limit" v-model:first="currentPage" :totalRecords="totalRecords">
                         </Paginator>

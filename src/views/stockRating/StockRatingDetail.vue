@@ -4,58 +4,60 @@
             Stock detail
         </template>
         <template #content>
-            <p class="pt-10 pb-6">Last update: {{ new Date(stock?.time).toLocaleDateString('Es-es',opcionesDate) }}
+            <p class="pt-10 pb-6">Last update: {{ new Date(stock?.time).toLocaleDateString('Es-es', opcionesDate) }}
             </p>
 
             <div class="flex justify-center">
-                <div class="flex flex-col gap-4 w-full sm:w-300">
-                    <div class="flex justify-between gap-40">
-                        <div class="flex flex-col w-full gap-4">
-                            <div class="flex-col gap-3 items-center">
-                                <p class=" mb-2 text-s">Ticker </p>
-                                <p class="text-lg">{{ stock?.ticker }}</p>
-                            </div>
-                            <div class="flex-col gap-3 items-center">
-                                <h1 class=" mb-2 text-s">Target From </h1>
-                                <p class="text-lg">{{ stock?.target_from }}</p>
-                            </div>
-                            <div class="flex-col gap-3 items-center">
-                                <h1 class=" mb-2 text-s">Target To </h1>
-                                <p class="text-lg">{{ stock?.target_to }}</p>
-                            </div>
-                            <div class="flex-col gap-3 items-center">
-                                <h1 class=" mb-2 text-s">Company </h1>
-                                <p class="text-lg">{{ stock?.company }}</p>
-                            </div>
+                <div class="flex flex-col gap-4 w-full sm:w-250">
+                    <div class="flex gap-4 w-full flex-wrap">
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <p class=" mb-2 text-s">Ticker </p>
+                            <p class="text-lg">{{ stock?.ticker }}</p>
                         </div>
-                        <div class="flex flex-col w-full gap-4">
-                            <div class="flex-col gap-3 items-center">
-                                <h1 class=" mb-2 text-s">Action </h1>
-                                <p class="text-lg">{{ stock?.action }}</p>
-                            </div>
-                            <div class="flex-col gap-3 items-center">
-                                <h1 class=" mb-2 text-s">Brokerage </h1>
-                                <p class="text-lg">{{ stock?.brokerage }}</p>
-                            </div>
-                            <div class="flex-col gap-3 items-center">
-                                <h1 class=" mb-2 text-s">Rating From </h1>
-                                <p class="text-lg">{{ stock?.rating_from }}</p>
-                            </div>
-                            <div class="flex-col gap-3 items-center">
-                                <h1 class=" mb-2 text-s">Rating To </h1>
-                                <p class="text-lg">{{ stock?.rating_to }}</p>
-                            </div>
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <h1 class=" mb-2 text-s">Company </h1>
+                            <p class="text-lg">{{ stock?.company }}</p>
                         </div>
                     </div>
-                    <div class="flex gap-3 items-center">
+                    <div class="flex gap-4 w-full flex-wrap">
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <h1 class=" mb-2 text-s">Action </h1>
+                            <p class="text-lg">{{ stock?.action }}</p>
+                        </div>
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <h1 class=" mb-2 text-s">Brokerage </h1>
+                            <p class="text-lg">{{ stock?.brokerage }}</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 w-full flex-wrap">
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <h1 class=" mb-2 text-s">Target From </h1>
+                            <p class="text-lg">{{ stock?.target_from }}</p>
+                        </div>
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <h1 class=" mb-2 text-s">Target To </h1>
+                            <p class="text-lg">{{ stock?.target_to }}</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 w-full flex-wrap">
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <h1 class=" mb-2 text-s">Rating From </h1>
+                            <p class="text-lg">{{ stock?.rating_from }}</p>
+                        </div>
+                        <div class="flex-col flex-1 gap-3 items-center min-w-60">
+                            <h1 class=" mb-2 text-s">Rating To </h1>
+                            <p class="text-lg">{{ stock?.rating_to }}</p>
+                        </div>
+                    </div>
+                    <div class="flex pt-10 gap-3 items-center">
                         <Button icon="pi pi-arrow-left" severity="secondary" @click="goTo('stockRatingList')"
                             size="large" />
-
                         <Button label="Delete" severity="danger" icon="pi pi-trash" @click="deleteOne()" />
-                        <Button label="Update info" icon="pi pi-pencil" @click="goTo('stockRatingEdit', stock.id)" />
+                        <Button label="Update" icon="pi pi-pencil" @click="goTo('stockRatingEdit', stock.id)" />
 
                     </div>
                 </div>
+
             </div>
 
         </template>
@@ -116,10 +118,10 @@ const deleteOne = () => {
 
     })
 }
-const opcionesDate: Intl.DateTimeFormatOptions = { 
-    day: "numeric", 
-    month: "long", 
-    year: "numeric" 
+const opcionesDate: Intl.DateTimeFormatOptions = {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
 };
 
 </script>
