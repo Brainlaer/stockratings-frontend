@@ -1,5 +1,5 @@
 # stockrating
-Software de analísis de bolsasa de mercados internacionales
+Software de analísis de bolsas de mercados internacionales
 
 
 https://github.com/user-attachments/assets/4dc5c6a5-021b-4b17-a4fd-c1a9285b730b
