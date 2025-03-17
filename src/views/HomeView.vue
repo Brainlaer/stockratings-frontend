@@ -80,9 +80,10 @@ onMounted(() => {
 
 const getStocksToBuy = async () => {
     let params = new URLSearchParams();
-    params.append('sortBy', 'time,growth')
-    params.append('order', 'desc ,desc')
-    params.append('rating_to', 'buy')
+    params.append('sortBy', 'growth,time')
+    params.append('order', 'desc,desc')
+    params.append('rating_to', 'buy,outperform,overweight,positive')
+    params.append('action','initiated,upgraded')
     params.append('limit', '10')
     params.append('offset', '0')
     let response = await getAll(params);
@@ -92,6 +93,7 @@ const getStocksToHold = async () => {
     let params = new URLSearchParams();
     params.append('sortBy', 'time,growth')
     params.append('order', 'desc,desc')
+    params.append('strongQuery', 'false')
     params.append('rating_to', 'hold')
     params.append('limit', '10')
     params.append('offset', '0')
